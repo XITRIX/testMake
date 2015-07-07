@@ -1,0 +1,2 @@
+all:
+	gсс 4.c -lpthread -o run
