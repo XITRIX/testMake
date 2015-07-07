@@ -66,7 +66,8 @@ int main()
         }
         //for (c=0;c<8;c++)
         //strcpy(cur[1][3],ch[1][3]);
-        //cout << endl << endl << cur[1][3] << " ";
+	if(strcmp(ch[x],ch[c])>0)
+        cout << endl << endl << "kek" << " ";
         wait(0);
     }
     return 0;
