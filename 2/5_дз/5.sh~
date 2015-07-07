@@ -1,0 +1,3 @@
+#!/bin/sh
+/bin/cp /home/test1/* /home/test2/
+
