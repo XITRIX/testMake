@@ -28,8 +28,8 @@ int main()
     else{
         char *buf;
         char ab[1000];
-        char *cur[1000][1000];
-        char *ch[1000][1000];
+        char *cur[100][100];
+        char *ch[100][100];
         int i=0,j=0,x,c,miss=0,v;
         close(a[1]);
         read(a[0],ab, 1000);
