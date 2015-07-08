@@ -34,7 +34,7 @@ int main()
 		printf("Создаю поток #%d\n",i);
 		rc[i] = pthread_create(&threads[i], NULL, thread, (void *)i);
         if (rc[i]) {
-            printf("ERROR; return code from pthread_create() is %d\n", rc[i]);
+            printf("ERROR: %d\n", rc[i]);
             exit(-1);
         }
 	}
