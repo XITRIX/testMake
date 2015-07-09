@@ -13,7 +13,7 @@ void *thread(void *t)
 {
 	int i;
 	pthread_mutex_lock(&mut);
-	i = (int)t;
+	i = timer;
 	timer++;
 	pthread_mutex_unlock(&mut);
 	printf("Я, #%d, буду спать %d секунд\n",i,timer);

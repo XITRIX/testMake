@@ -5,8 +5,7 @@
 
 int main(){
 	key_t key = ftok("file1.c", 1);
-	int semid = binary_semaphore_allocation(key, 0666
-	| IPC_CREAT);
+	int semid = binary_semaphore_allocation(key, 0666 | IPC_CREAT);
 	binary_semaphore_initialize(semid);
 	binary_semaphore_take(semid);
 	printf("pr1: proc1 took the semaphore\n");
