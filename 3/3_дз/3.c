@@ -6,6 +6,7 @@
 #define THREADS_NUM 10
 
 pthread_mutex_t mut;
+pthread_mutex_t mut2;
 pthread_cond_t Wmut;
 int timer=0;
 
@@ -19,8 +20,12 @@ void *thread(void *t)
 	printf("Я, #%d, буду спать %d секунд\n",i,timer);
 	sleep(timer);
 	printf("#%d проснулся!\n",i);
-	if (i == THREADS_NUM-1) pthread_cond_broadcast(&Wmut);
-	pthread_cond_wait(&Wmut,&mut);
+	pthread_mutex_lock(&mut);
+	if (i == THREADS_NUM-1) { printf("%d, %d\n",i,*((int*)t));pthread_cond_broadcast(&Wmut);}
+	pthread_mutex_unlock(&mut);
+	printf("#%d жду!\n",i);
+	pthread_cond_wait(&Wmut,&mut2);
+	printf("#%d дроп!\n",i);
 	pthread_exit(NULL);
 }
 
@@ -32,7 +37,7 @@ int main()
 	int i,rc[THREADS_NUM];
 	for (i=0;i<THREADS_NUM;i++){
 		printf("Создаю поток #%d\n",i);
-		rc[i] = pthread_create(&threads[i], NULL, thread, (void *)i);
+		rc[i] = pthread_create(&threads[i], NULL, thread, (void *)&i);
         if (rc[i]) {
             printf("ERROR: %d\n", rc[i]);
             exit(-1);
