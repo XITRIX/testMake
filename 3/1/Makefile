@@ -1,9 +1,8 @@
-TARGET=main
-FLAGS= -lpthread
-all: $(TARGET)
+NAME = main
+REQUEST = -lpthread
 
-main: main.c
-	gcc main.c -o $(TARGET) $(FLAGS)
-
-clean:
-	rm -f *.o $(TARGET)
+all: $(NAME)
+$(NAME): $(NAME).o
+	gcc $(NAME).o $(REQUEST) -o run.a
+$(NAME).o: $(NAME).c
+	gcc $(NAME).c $(REQUEST) -c -o $(NAME).o

@@ -1,4 +1,4 @@
-NAME = 4
+NAME = signal
 REQUEST = -lpthread
 
 all: $(NAME)
