@@ -60,12 +60,12 @@ int main (int argc, char *argv[])
 	pthread_create(&threads[0], &attr, watch_count, (void *)t1);
 	pthread_create(&threads[0], &attr, inc_count, (void *)t2);
 	pthread_create(&threads[0], &attr, inc_count, (void *)t3);
-	for (i=0; i<NUM_THREADS];i++){
+	for (i=0; i<NUM_THREADS;i++){
 		pthread_join(threads[i], NULL);
 	}
 	printf("Main(): Waited on %d threads. Done.\n", NUM_THREADS);
 	pthread_attr_destroy(&attr);
 	pthread_mutex_destroy(&count_mutex);
-	pthead_cond_destroy(&count_threadshold_cv);
+	pthread_cond_destroy(&count_threadshold_cv);
 	pthread_exit(NULL);
 }
