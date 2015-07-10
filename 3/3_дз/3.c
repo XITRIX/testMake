@@ -20,11 +20,12 @@ void *thread(void *t)
 	printf("Я, #%d, буду спать %d секунд\n",i,timer);
 	sleep(timer);
 	printf("#%d проснулся!\n",i);
-	pthread_mutex_lock(&mut);
+	
 	if (i == THREADS_NUM-1) { printf("%d, %d\n",i,*((int*)t));pthread_cond_broadcast(&Wmut);}
-	pthread_mutex_unlock(&mut);
 	printf("#%d жду!\n",i);
+	pthread_mutex_lock(&mut);
 	pthread_cond_wait(&Wmut,&mut2);
+	pthread_mutex_unlock(&mut);
 	printf("#%d дроп!\n",i);
 	pthread_exit(NULL);
 }

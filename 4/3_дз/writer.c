@@ -16,8 +16,8 @@ int main()
 	char str[100];
 	int ok=0;
 
-	int semid = binary_semaphore_allocation(111, 0666 | IPC_CREAT);
-	int semid2 = binary_semaphore_allocation(112, 0666 | IPC_CREAT);
+	int semid = binary_semaphore_allocation(1111, 0666 | IPC_CREAT);
+	int semid2 = binary_semaphore_allocation(1112, 0666 | IPC_CREAT);
 	binary_semaphore_initialize(semid);
 	binary_semaphore_initialize(semid2);
 

@@ -12,11 +12,11 @@ FILE *file;
 int main()
 {
 	int i=0;
-	char *buf;
+	int buf;
 	char str[100];
 
-	int semid = binary_semaphore_allocation(111, 0666 | IPC_CREAT);
-	int semid2 = binary_semaphore_allocation(112, 0666 | IPC_CREAT);
+	int semid = binary_semaphore_allocation(1111, 0666 | IPC_CREAT);
+	int semid2 = binary_semaphore_allocation(1112, 0666 | IPC_CREAT);
 	binary_semaphore_initialize(semid);
 	binary_semaphore_initialize(semid2);
 
@@ -39,7 +39,7 @@ int main()
     	{
     		printf ("\nДошёл до семафора %d\n", semid);
     		binary_semaphore_take(semid);
-    		buf = fgets (str, shared_segment_size, file);
+    		buf = read (str, shared_segment_size, file);
     		i++;
     		if (buf == NULL)
     		{
@@ -58,6 +58,7 @@ int main()
     		binary_semaphore_free(semid2);
     		printf ("\nФришнул семафору %d\n", semid2);
     	}
+    	else printf ("\nПечалька с семафорой %d\n", semid);
     }
     printf ("\nВсего итераций: %d\n", i);
     sprintf (shared_memory, "@END!!END@");
