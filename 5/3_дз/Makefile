@@ -1,5 +1,5 @@
 NAME = signal
-REQUEST = -lrt
+REQUEST = -lrt -lpthread
 
 all: $(NAME)
 $(NAME): $(NAME).o
