@@ -6,20 +6,24 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int main(){
-	int fd,i;
-	if (mknod("fifo", S_IFIFO | 0666, 0) < 0){
-		printf("Can\'t create MY_FIFO\n");
-		exit(-1);
-	}
+int main()
+{
+	int fd;
+    char ab[800];
+    if ((mknod("fifo", S_IFIFO|0666, 0)) < 0) 
+    {
+       	printf("Ошибка FIFO\n");
+      	exit(1);
+    }
 
-	if (fd = open("fifo", 0666) < 0){
-		printf("Can't open MY_FIFO for writing\n");
-		exit(-1);
-	}
-	freopen("fifo", "w", stdout);
-    i = execl("/bin/ls", "ls", "-l", "/tmp/", NULL);
-    if (i==-1) printf("Get out of here");
+    fd = open("fifo", O_RDONLY);
+	read(fd, &ab, sizeof(ab));
+    printf("%s", ab);
     close(fd);
-    exit(0);
+
+    system("rm fifo");
+
+    return(0);
 }
+
+            
