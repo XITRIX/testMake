@@ -10,15 +10,15 @@ ipad - мой вариант полного мэйкфайла, для ПК не
 clear - удаляет все исполняемые и объектные файлы
 
 TODO:
-git       +\n
-Makefile  +
-Pipe      +
-Pipe2     +
-FIFO      +
-PassWord  +
-CUnit     -
-Broadcast +-
-Raw Sock  -
-Semafor   +-
-Signal    + 
-rpm pak   -
+  git       +
+  Makefile  +
+  Pipe      +
+  Pipe2     +
+  FIFO      +
+  PassWord  +
+  CUnit     -
+  Broadcast +-
+  Raw Sock  -
+  Semafor   +-
+  Signal    + 
+  rpm pak   -
