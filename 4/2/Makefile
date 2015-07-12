@@ -12,5 +12,5 @@ client.o: client.c
 server: server.o
 	gcc server.o $(REQUEST) -o server.a
 
-server.o: server.c bin_sem.h
+server.o: server.c 
 	gcc server.c $(REQUEST) -c -o server.o
