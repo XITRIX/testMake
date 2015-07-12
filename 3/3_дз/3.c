@@ -21,7 +21,12 @@ void *thread(void *t)
 	sleep(timer);
 	printf("#%d проснулся!\n",i);
 	
-	if (i == THREADS_NUM-1) { printf("%d, %d\n",i,*((int*)t));pthread_cond_broadcast(&Wmut);}
+	if (i == THREADS_NUM-1) 
+	{ 
+		printf("%d, %d\n",i,*((int*)t));
+		pthread_cond_broadcast(&Wmut);
+	}
+	
 	printf("#%d жду!\n",i);
 	pthread_mutex_lock(&mut);
 	pthread_cond_wait(&Wmut,&mut2);
