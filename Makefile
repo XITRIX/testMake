@@ -1,19 +1,8 @@
+MODULES = 1/1 1/2_дз 1/3_дз 2/1 2/2 2/3 2/4_дз 2/5_дз 3/1 3/2 3/3_дз 4/1 4/2 3/3_дз 5/1 5/2
 all:
-	make -f './1/1/Makefile'
-	make -f './1/2_дз/Makefile'
-	make -f './1/3_дз/Makefile'
-	make -f './2/1/Makefile'
-	make -f './2/2/Makefile'
-	make -f './2/3/Makefile'
-	make -f './2/4_дз/Makefile'
-	make -f './3/1/Makefile'
-	make -f './3/2/Makefile'
-	make -f './3/3_дз/Makefile'
-	make -f './4/1/Makefile'
-	make -f './4/2/Makefile'
-	make -f './4/3_дз/Makefile'
-	make -f './5/1/Makefile'
-	make -f './5/2/Makefile'
+	for dir in $(MODULES); do \
+		(cd $$dir; ${MAKE} all); \
+	done
 	
 ipad:
 	gcc './1/1/1.c' -o ./1/1/run.a
@@ -34,3 +23,8 @@ ipad:
 	gcc './4/3_дз/writer.c' -o ./4/3_дз/writer.a
 	gcc './5/1/signal.c' -o ./5/1/signal.a
 	gcc './5/2/timer.c' -o ./5/2/timer.a
+	
+clear:
+	for dir in $(MODULES); do \
+		(cd $$dir; rm *.a *.o); \
+	done
