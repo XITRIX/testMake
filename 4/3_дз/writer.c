@@ -17,15 +17,15 @@ int main()
 	char str[100];
 	int ok=0;
 
-	int semid = binary_semaphore_allocation(111, 0666 | IPC_CREAT);
-	int semid2 = binary_semaphore_allocation(112, 0666 | IPC_CREAT);
+	int semid = binary_semaphore_allocation(1111, 0666 | IPC_CREAT);
+	int semid2 = binary_semaphore_allocation(1112, 0666 | IPC_CREAT);
 	binary_semaphore_initialize(semid);
 	binary_semaphore_initialize(semid2);
 
 	int segment_id;
 	char *shared_memory;
 	struct shmid_ds shmbuffer;
-	const int shared_segment_size = 60000;
+	const int shared_segment_size = 2;
 
 	segment_id = shmget (KEY, shared_segment_size, 0);
 	if (segment_id < 0) {printf ("ошибка шаред памяти\n"); return -1;}
@@ -49,6 +49,7 @@ int main()
     	}
     	else printf ("\nПечалька с семафорой %d\n", semid);
     }
+    binary_semaphore_free(semid);
     printf ("\nВсего итераций: %d\n", i);
     shmdt (shared_memory);
     return 0;

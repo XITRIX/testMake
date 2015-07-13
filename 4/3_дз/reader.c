@@ -16,15 +16,15 @@ int main()
 	int buf;
 	char str[100];
 
-	int semid = binary_semaphore_allocation(111, 0666 | IPC_CREAT);
-	int semid2 = binary_semaphore_allocation(112, 0666 | IPC_CREAT);
+	int semid = binary_semaphore_allocation(1111, 0666 | IPC_CREAT);
+	int semid2 = binary_semaphore_allocation(1112, 0666 | IPC_CREAT);
 	binary_semaphore_initialize(semid);
 	binary_semaphore_initialize(semid2);
 
 	int segment_id;
 	char *shared_memory;
 	struct shmid_ds shmbuffer;
-	const int shared_segment_size = 60000;
+	const int shared_segment_size = 2;
 
 	segment_id = shmget (KEY, shared_segment_size, IPC_CREAT | 0666);
 	if (segment_id < 0) {printf ("ошибка шаред памяти\n"); return -1;}
@@ -40,15 +40,15 @@ int main()
     	{
     		printf ("\nДошёл до семафора %d\n", semid);
     		binary_semaphore_take(semid);
-    		buf = read (file, shared_memory, 2);
-    		i++;
-    		if (buf == -1)
-    		{
-    				printf ("\nОшибка чтения из файла\n");
-    				break;
+    		while(read (file, shared_memory, 2)){
+    			i++;
+    			printf ("\nДошёл до семафора %d\n", semid);
+    			binary_semaphore_take(semid);
+    			binary_semaphore_free(semid2);
+    			printf ("\nФришнул семафору %d\n", semid2);
     		}
+    		break;
     		//sprintf (shared_memory, "%s", str);
-    		binary_semaphore_free(semid2);
     		printf ("\nФришнул семафору %d\n", semid2);
     	}
     	else printf ("\nПечалька с семафорой %d\n", semid);
